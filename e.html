@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="Js/jquery-3.5.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<input type="checkbox" name="checkall">全选
+<input type="checkbox" name="check1" class="checkbox">1
+<input type="checkbox" name="check2" class="checkbox">2
+<input type="checkbox" name="check3" class="checkbox">3
+<input type="checkbox" name="checkAll" >全选
+<script>
+// $('input[name=checkAll]')[0].checked=true
+//全选全不选
+// 点击全选框,下面都选
+// 点击取消,所有取消
+// console.log(document.querySelectorAll('input[name^="check1"]')[0].checked=false);
+// console.log(document.querySelectorAll('input:checked').length);
+var a= $('input[name*=all]')
+$(function () {
+    a.change(function () {
+        // console.log($('input[name*="check"]').checked)
+        $('input[name*=check]').prop('checked',a.prop('checked'))
+    })
+})
+//只要一个不点，就取消掉全选
+var len=$('input[name*=check]').length-2
+$('.checkbox').change(function () {
+    if($('.checkbox:checked').length>=3) {
+        a.prop('checked',"checked")
+        $('input[name=checkAll]')[0].checked=true
+    }
+    else{
+        a.prop('checked',false)
+        $('input[name=checkAll]')[0].checked=false
+    }
+})
+</script>
+</body>
+</html>
